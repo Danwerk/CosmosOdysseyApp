@@ -14,3 +14,9 @@ Link to ASP.NET Core MVC web application hosted in Azure: `https://cosmos-odysse
 5. Run `docker compose up` command, which will start both: web application and database.
 6. Now the application should be accessible on `http://localhost:8001/` url.
 
+## Testing
+There is seeded two app users: 
+- admin (email: admin@app.com, password: Foo.bar.1)
+- user (email: user@app.com, password Foo.bar.2)
+
+Use this identities to sign in or register a new one.
