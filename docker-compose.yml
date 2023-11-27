@@ -4,7 +4,7 @@ services:
   odyssey-app:
     container_name: odyssey-app
     build:
-      context: ./3DM
+      context: ./cosmosOdyssey
       dockerfile: ./Dockerfile
     ports:
       # external:internal
@@ -12,7 +12,7 @@ services:
     depends_on:
       - odyssey-db
     environment:
-      - ConnectionStrings:DefaultConnection=Host=odyssey-db:5432;Database=three-d-model;Username=postgres;Password=postgres
+      - ConnectionStrings:DefaultConnection=Host=odyssey-db:5432;Database=odyssey;Username=postgres;Password=postgres
   
   odyssey-db:
     container_name: odyssey-db
