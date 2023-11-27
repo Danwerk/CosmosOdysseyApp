@@ -1,0 +1,60 @@
+﻿@model WebApp.ViewModels.ProviderReportModel
+
+
+<tr>
+
+    <td>
+        @Model.ProviderReport.FromLocation
+    </td>
+    <td>
+        @Model.ProviderReport.ToLocation
+    </td>
+    <td>
+        @Model.ProviderReport.Price
+    </td>
+    <td>
+        @Model.ProviderReport.Distance
+
+    </td>
+    <td>
+        @Model.ProviderReport.CompanyName
+
+    </td>
+    <td>
+        @Model.ProviderReport.FlightStart
+
+    </td>
+    <td>
+        @Model.ProviderReport.FlightEnd
+
+    </td>
+    <td>
+        @FormatTimeSpan(@Model.ProviderReport.FlightEnd - @Model.ProviderReport.FlightStart)
+    </td>
+    <td>
+        @if (Model.ProviderReport.FlightStart < DateTime.UtcNow)
+        {
+            <span class="text-danger">Offer expired! @Model.ProviderReport.ValidUntil </span>
+        }
+        else if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <a asp-controller="Reservations" asp-action="Create"
+               asp-route-providerReportId="@Model.ProviderReport.Id"
+               class="btn btn-primary">
+                Reserve
+            </a>
+        }
+    </td>
+
+</tr>
+
+@functions {
+    // Helper method to format TimeSpan
+    public static string FormatTimeSpan(TimeSpan timeSpan)
+    {
+        string formattedDay = timeSpan.Days > 1 || timeSpan.Days == 0 ? "days" : "day";
+        string formattedDuration = $"{timeSpan.Days} {formattedDay} {timeSpan.Hours}h:{timeSpan.Minutes}m";
+        return formattedDuration;
+    }
+
+}

@@ -1,0 +1,96 @@
+@using App.BLL.DTO
+@using WebApp.ViewModels
+@model WebApp.ViewModels.Routes.SearchModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<form method="get" asp-action="Index">
+    <input asp-for="From" type="search" placeholder="From..."/>
+    <input asp-for="To" type="search" placeholder="To..."/>
+    <input asp-for="Company" type="search" placeholder="Company..."/>
+    <div><br/></div>
+    <div>
+        <input type="submit" class="btn btn-primary" value="Apply filter"/>
+    </div>
+</form>
+
+
+@* <h1>Routes</h1> *@
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            From
+        </th>
+        <th>
+            To
+        </th>
+        <th>
+            <a asp-action="Index"
+               asp-route-from="@Model.From"
+               asp-route-to="@Model.To"
+               asp-route-company="@Model.Company"
+               asp-route-sortBy="@ViewData["PriceSortParam"]">
+                Price
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index"
+               asp-route-from="@Model.From"
+               asp-route-to="@Model.To"
+               asp-route-company="@Model.Company"
+               asp-route-sortBy="@ViewData["DistanceSortParam"]">
+                Distance
+            </a>
+
+        </th>
+        <th>
+            Company name
+        </th>
+        <th>
+            Flight start
+        </th>
+        <th>
+            Flight end
+        </th>
+        <th>
+            <a asp-action="Index"
+               asp-route-from="@Model.From"
+               asp-route-to="@Model.To"
+               asp-route-company="@Model.Company"
+               asp-route-sortBy="@ViewData["TravelTimeSortParam"]">
+                Travel time
+            </a>
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    @if (Model.Results != null)
+    {
+        @foreach (var providerReport in Model.Results)
+        {
+            <partial name="_ProviderReportRow" model="new ProviderReportModel(providerReport)"/>
+        }
+    }
+    </tbody>
+</table>
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link" asp-action="Index"
+                   asp-route-from="@Model.From"
+                   asp-route-to="@Model.To"
+                   asp-route-company="@Model.Company"
+                   asp-route-sortBy="@ViewData["TravelTimeSortParam"]" asp-route-pageNumber="@i">
+                    @i
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

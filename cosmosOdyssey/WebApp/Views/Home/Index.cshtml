@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Cosmos Odyssey Reservation</h1>
+    <p class="lead">Embark on a journey with Cosmos Odyssey and reserve your dream experience.</p>
+    <div class="button-container">
+        <a asp-controller="Reservations" asp-action="Create" class="blue-button">Make a Reservation</a>
+        <a asp-controller="Reservations" asp-action="Index" class="blue-button">My Reservations</a>
+    </div>
+</div>
+
+<style>
+    .blue-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 12px 24px;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+        margin-right: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    .blue-button:hover {
+        background-color: #0056b3;
+         color: #fff;
+    }
+
+    .button-container {
+        margin-top: 30px;
+    }
+</style>

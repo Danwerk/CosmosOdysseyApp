@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\App.BLL.DTO\App.BLL.DTO.csproj" />
+      <ProjectReference Include="..\App.Contracts.BLL\App.Contracts.BLL.csproj" />
+      <ProjectReference Include="..\App.Contracts.DAL\App.Contracts.DAL.csproj" />
+      <ProjectReference Include="..\App.DAL.EF\App.DAL.EF.csproj" />
+      <ProjectReference Include="..\App.Domain\App.Domain.csproj" />
+      <ProjectReference Include="..\Base.BLL\Base.BLL.csproj" />
+      <ProjectReference Include="..\Base.DAL\Base.DAL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    </ItemGroup>
+
+</Project>

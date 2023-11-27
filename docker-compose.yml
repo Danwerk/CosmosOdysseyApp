@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  odyssey-app:
+    container_name: odyssey-app
+    build:
+      context: ./3DM
+      dockerfile: ./Dockerfile
+    ports:
+      # external:internal
+      - "8001:80"
+    depends_on:
+      - odyssey-db
+    environment:
+      - ConnectionStrings:DefaultConnection=Host=odyssey-db:5432;Database=three-d-model;Username=postgres;Password=postgres
+  
+  odyssey-db:
+    container_name: odyssey-db
+    image: "postgres:15.2-bullseye"
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      # external:internal
+      - "5447:5432"
+    volumes:
+      - odyssey-db-postgres-volume:\Users\danyi\RiderProjects\postgresql
+
+volumes:
+  odyssey-db-postgres-volume:
